@@ -1,0 +1,17 @@
+
+State Machine - |projeto|cronometro:comb_3|estado
+Name estado.para estado.pausa estado.conta estado.000 
+estado.000 0 0 0 0 
+estado.conta 0 0 1 1 
+estado.pausa 0 1 0 1 
+estado.para 1 0 0 1 
+
+State Machine - |projeto|cronometro:comb_3|pausar
+Name pausar.01 
+pausar.00 0 
+pausar.01 1 
+
+State Machine - |projeto|cronometro:comb_3|contar
+Name contar.01 
+contar.00 0 
+contar.01 1 
