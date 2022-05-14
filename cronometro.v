@@ -18,28 +18,28 @@ reg [1:0] contar = 0, pausar = 0, parar = 0;
 
 // maquina de estados
 always @(negedge clk) begin
-	case(estado)
-		reseta: begin
-			contar <= 0;
-			pausar <= 0;
-			parar <= 0;
+	if(estado == conta || estado == pausa) begin
+		if(i + 1 == dec_segundo) begin
+			if(numero < 10000) begin
+				numero <= numero + 1;
+			end
+			else nummero <= 0;
+			i <= 0;
 		end
-		conta: begin
-			contar <= 1;
-			pausar <= 0;
-			parar <= 0;
-		end
-		pausa: begin
-			contar <= 1;
-			pausar <= 1;
-			parar <= 0;
-		end
-		para: begin
-			contar <= 0;
-			pausar <= 0;
-			parar <= 1;
-		end
-	endcase
+		else i <= i + 1;
+	end
+	else begin 
+		i <= 0;
+	end
+
+	if(estado != pausa) begin
+		numMostrado <= numero;
+	end
+
+	if(estado == reseta) begin
+		numero <= 0000;
+		numMostrado <= 0000;
+	end
 end
 
 // maquina de estados 
@@ -64,8 +64,6 @@ always @(posedge clk) begin
 		end
 	endcase
 end
-
-contador(.num(numero), .estado(estado), .numout(numMostrado), .numTotal(numero), .clk(clk));
 
 //digitos
 always @(numMostrado) begin
